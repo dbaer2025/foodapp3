@@ -1,5 +1,6 @@
 {
   "AppSyncApiName": "foodapp3",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
-  "DynamoDBEnableServerSideEncryption": false
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthModeLastUpdated": "2023-12-04T05:52:38.535Z"
 }

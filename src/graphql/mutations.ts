@@ -7,55 +7,60 @@ type GeneratedMutation<InputType, OutputType> = string & {
   __generatedMutationInput: InputType;
   __generatedMutationOutput: OutputType;
 };
-
-export const createTodo = /* GraphQL */ `mutation CreateTodo(
-  $input: CreateTodoInput!
-  $condition: ModelTodoConditionInput
+export const createDiary = /* GraphQL */ `mutation CreateDiary(
+  $input: CreateDiaryInput!
+  $condition: ModelDiaryConditionInput
 ) {
-  createTodo(input: $input, condition: $condition) {
+  createDiary(input: $input, condition: $condition) {
     id
     name
+    image
     description
+    author
     createdAt
     updatedAt
     __typename
   }
 }
 ` as GeneratedMutation<
-  APITypes.CreateTodoMutationVariables,
-  APITypes.CreateTodoMutation
+  APITypes.CreateDiaryMutationVariables,
+  APITypes.CreateDiaryMutation
 >;
-export const updateTodo = /* GraphQL */ `mutation UpdateTodo(
-  $input: UpdateTodoInput!
-  $condition: ModelTodoConditionInput
+export const updateDiary = /* GraphQL */ `mutation UpdateDiary(
+  $input: UpdateDiaryInput!
+  $condition: ModelDiaryConditionInput
 ) {
-  updateTodo(input: $input, condition: $condition) {
+  updateDiary(input: $input, condition: $condition) {
     id
     name
+    image
     description
+    author
     createdAt
     updatedAt
     __typename
   }
 }
 ` as GeneratedMutation<
-  APITypes.UpdateTodoMutationVariables,
-  APITypes.UpdateTodoMutation
+  APITypes.UpdateDiaryMutationVariables,
+  APITypes.UpdateDiaryMutation
 >;
-export const deleteTodo = /* GraphQL */ `mutation DeleteTodo(
-  $input: DeleteTodoInput!
-  $condition: ModelTodoConditionInput
+export const deleteDiary = /* GraphQL */ `mutation DeleteDiary(
+  $input: DeleteDiaryInput!
+  $condition: ModelDiaryConditionInput
 ) {
-  deleteTodo(input: $input, condition: $condition) {
+  deleteDiary(input: $input, condition: $condition) {
     id
     name
+    image
     description
+    author
     createdAt
     updatedAt
     __typename
   }
 }
 ` as GeneratedMutation<
-  APITypes.DeleteTodoMutationVariables,
-  APITypes.DeleteTodoMutation
+  APITypes.DeleteDiaryMutationVariables,
+  APITypes.DeleteDiaryMutation
 >;

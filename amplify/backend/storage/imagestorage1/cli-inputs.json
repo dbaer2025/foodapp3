@@ -1,0 +1,14 @@
+{
+  "resourceName": "imagestorage1",
+  "policyUUID": "9855c80e",
+  "bucketName": "foodapp33ed8be633cda4797b2265530b1823ed9",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

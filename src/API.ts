@@ -2,18 +2,22 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreateTodoInput = {
+export type CreateDiartInput = {
   id?: string | null,
-  name: string,
+  name?: string | null,
+  img?: string | null,
   description?: string | null,
+  author?: string | null,
 };
 
-export type ModelTodoConditionInput = {
+export type ModelDiartConditionInput = {
   name?: ModelStringInput | null,
+  img?: ModelStringInput | null,
   description?: ModelStringInput | null,
-  and?: Array< ModelTodoConditionInput | null > | null,
-  or?: Array< ModelTodoConditionInput | null > | null,
-  not?: ModelTodoConditionInput | null,
+  author?: ModelStringInput | null,
+  and?: Array< ModelDiartConditionInput | null > | null,
+  or?: Array< ModelDiartConditionInput | null > | null,
+  not?: ModelDiartConditionInput | null,
 };
 
 export type ModelStringInput = {
@@ -56,32 +60,79 @@ export type ModelSizeInput = {
   between?: Array< number | null > | null,
 };
 
-export type Todo = {
-  __typename: "Todo",
+export type Diart = {
+  __typename: "Diart",
   id: string,
-  name: string,
+  name?: string | null,
+  img?: string | null,
   description?: string | null,
+  author?: string | null,
   createdAt: string,
   updatedAt: string,
 };
 
-export type UpdateTodoInput = {
+export type UpdateDiartInput = {
   id: string,
   name?: string | null,
+  img?: string | null,
   description?: string | null,
+  author?: string | null,
 };
 
-export type DeleteTodoInput = {
+export type DeleteDiartInput = {
   id: string,
 };
 
-export type ModelTodoFilterInput = {
+export type CreateDiaryInput = {
+  id?: string | null,
+  name: string,
+  image?: string | null,
+  description?: string | null,
+  author?: string | null,
+};
+
+export type ModelDiaryConditionInput = {
+  name?: ModelStringInput | null,
+  image?: ModelStringInput | null,
+  description?: ModelStringInput | null,
+  author?: ModelStringInput | null,
+  and?: Array< ModelDiaryConditionInput | null > | null,
+  or?: Array< ModelDiaryConditionInput | null > | null,
+  not?: ModelDiaryConditionInput | null,
+};
+
+export type Diary = {
+  __typename: "Diary",
+  id: string,
+  name: string,
+  image?: string | null,
+  description?: string | null,
+  author?: string | null,
+  createdAt: string,
+  updatedAt: string,
+};
+
+export type UpdateDiaryInput = {
+  id: string,
+  name?: string | null,
+  image?: string | null,
+  description?: string | null,
+  author?: string | null,
+};
+
+export type DeleteDiaryInput = {
+  id: string,
+};
+
+export type ModelDiartFilterInput = {
   id?: ModelIDInput | null,
   name?: ModelStringInput | null,
+  img?: ModelStringInput | null,
   description?: ModelStringInput | null,
-  and?: Array< ModelTodoFilterInput | null > | null,
-  or?: Array< ModelTodoFilterInput | null > | null,
-  not?: ModelTodoFilterInput | null,
+  author?: ModelStringInput | null,
+  and?: Array< ModelDiartFilterInput | null > | null,
+  or?: Array< ModelDiartFilterInput | null > | null,
+  not?: ModelDiartFilterInput | null,
 };
 
 export type ModelIDInput = {
@@ -100,18 +151,37 @@ export type ModelIDInput = {
   size?: ModelSizeInput | null,
 };
 
-export type ModelTodoConnection = {
-  __typename: "ModelTodoConnection",
-  items:  Array<Todo | null >,
+export type ModelDiartConnection = {
+  __typename: "ModelDiartConnection",
+  items:  Array<Diart | null >,
   nextToken?: string | null,
 };
 
-export type ModelSubscriptionTodoFilterInput = {
+export type ModelDiaryFilterInput = {
+  id?: ModelIDInput | null,
+  name?: ModelStringInput | null,
+  image?: ModelStringInput | null,
+  description?: ModelStringInput | null,
+  author?: ModelStringInput | null,
+  and?: Array< ModelDiaryFilterInput | null > | null,
+  or?: Array< ModelDiaryFilterInput | null > | null,
+  not?: ModelDiaryFilterInput | null,
+};
+
+export type ModelDiaryConnection = {
+  __typename: "ModelDiaryConnection",
+  items:  Array<Diary | null >,
+  nextToken?: string | null,
+};
+
+export type ModelSubscriptionDiartFilterInput = {
   id?: ModelSubscriptionIDInput | null,
   name?: ModelSubscriptionStringInput | null,
+  img?: ModelSubscriptionStringInput | null,
   description?: ModelSubscriptionStringInput | null,
-  and?: Array< ModelSubscriptionTodoFilterInput | null > | null,
-  or?: Array< ModelSubscriptionTodoFilterInput | null > | null,
+  author?: ModelSubscriptionStringInput | null,
+  and?: Array< ModelSubscriptionDiartFilterInput | null > | null,
+  or?: Array< ModelSubscriptionDiartFilterInput | null > | null,
 };
 
 export type ModelSubscriptionIDInput = {
@@ -144,83 +214,157 @@ export type ModelSubscriptionStringInput = {
   notIn?: Array< string | null > | null,
 };
 
-export type CreateTodoMutationVariables = {
-  input: CreateTodoInput,
-  condition?: ModelTodoConditionInput | null,
+export type ModelSubscriptionDiaryFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  name?: ModelSubscriptionStringInput | null,
+  image?: ModelSubscriptionStringInput | null,
+  description?: ModelSubscriptionStringInput | null,
+  author?: ModelSubscriptionStringInput | null,
+  and?: Array< ModelSubscriptionDiaryFilterInput | null > | null,
+  or?: Array< ModelSubscriptionDiaryFilterInput | null > | null,
 };
 
-export type CreateTodoMutation = {
-  createTodo?:  {
-    __typename: "Todo",
+export type CreateDiartMutationVariables = {
+  input: CreateDiartInput,
+  condition?: ModelDiartConditionInput | null,
+};
+
+export type CreateDiartMutation = {
+  createDiart?:  {
+    __typename: "Diart",
     id: string,
-    name: string,
+    name?: string | null,
+    img?: string | null,
     description?: string | null,
+    author?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
-export type UpdateTodoMutationVariables = {
-  input: UpdateTodoInput,
-  condition?: ModelTodoConditionInput | null,
+export type UpdateDiartMutationVariables = {
+  input: UpdateDiartInput,
+  condition?: ModelDiartConditionInput | null,
 };
 
-export type UpdateTodoMutation = {
-  updateTodo?:  {
-    __typename: "Todo",
+export type UpdateDiartMutation = {
+  updateDiart?:  {
+    __typename: "Diart",
     id: string,
-    name: string,
+    name?: string | null,
+    img?: string | null,
     description?: string | null,
+    author?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
-export type DeleteTodoMutationVariables = {
-  input: DeleteTodoInput,
-  condition?: ModelTodoConditionInput | null,
+export type DeleteDiartMutationVariables = {
+  input: DeleteDiartInput,
+  condition?: ModelDiartConditionInput | null,
 };
 
-export type DeleteTodoMutation = {
-  deleteTodo?:  {
-    __typename: "Todo",
+export type DeleteDiartMutation = {
+  deleteDiart?:  {
+    __typename: "Diart",
     id: string,
-    name: string,
+    name?: string | null,
+    img?: string | null,
     description?: string | null,
+    author?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
-export type GetTodoQueryVariables = {
+export type CreateDiaryMutationVariables = {
+  input: CreateDiaryInput,
+  condition?: ModelDiaryConditionInput | null,
+};
+
+export type CreateDiaryMutation = {
+  createDiary?:  {
+    __typename: "Diary",
+    id: string,
+    name: string,
+    image?: string | null,
+    description?: string | null,
+    author?: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateDiaryMutationVariables = {
+  input: UpdateDiaryInput,
+  condition?: ModelDiaryConditionInput | null,
+};
+
+export type UpdateDiaryMutation = {
+  updateDiary?:  {
+    __typename: "Diary",
+    id: string,
+    name: string,
+    image?: string | null,
+    description?: string | null,
+    author?: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteDiaryMutationVariables = {
+  input: DeleteDiaryInput,
+  condition?: ModelDiaryConditionInput | null,
+};
+
+export type DeleteDiaryMutation = {
+  deleteDiary?:  {
+    __typename: "Diary",
+    id: string,
+    name: string,
+    image?: string | null,
+    description?: string | null,
+    author?: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type GetDiartQueryVariables = {
   id: string,
 };
 
-export type GetTodoQuery = {
-  getTodo?:  {
-    __typename: "Todo",
+export type GetDiartQuery = {
+  getDiart?:  {
+    __typename: "Diart",
     id: string,
-    name: string,
+    name?: string | null,
+    img?: string | null,
     description?: string | null,
+    author?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
-export type ListTodosQueryVariables = {
-  filter?: ModelTodoFilterInput | null,
+export type ListDiartsQueryVariables = {
+  filter?: ModelDiartFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
-export type ListTodosQuery = {
-  listTodos?:  {
-    __typename: "ModelTodoConnection",
+export type ListDiartsQuery = {
+  listDiarts?:  {
+    __typename: "ModelDiartConnection",
     items:  Array< {
-      __typename: "Todo",
+      __typename: "Diart",
       id: string,
-      name: string,
+      name?: string | null,
+      img?: string | null,
       description?: string | null,
+      author?: string | null,
       createdAt: string,
       updatedAt: string,
     } | null >,
@@ -228,46 +372,143 @@ export type ListTodosQuery = {
   } | null,
 };
 
-export type OnCreateTodoSubscriptionVariables = {
-  filter?: ModelSubscriptionTodoFilterInput | null,
+export type GetDiaryQueryVariables = {
+  id: string,
 };
 
-export type OnCreateTodoSubscription = {
-  onCreateTodo?:  {
-    __typename: "Todo",
+export type GetDiaryQuery = {
+  getDiary?:  {
+    __typename: "Diary",
     id: string,
     name: string,
+    image?: string | null,
     description?: string | null,
+    author?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
-export type OnUpdateTodoSubscriptionVariables = {
-  filter?: ModelSubscriptionTodoFilterInput | null,
+export type ListDiariesQueryVariables = {
+  filter?: ModelDiaryFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
 };
 
-export type OnUpdateTodoSubscription = {
-  onUpdateTodo?:  {
-    __typename: "Todo",
+export type ListDiariesQuery = {
+  listDiaries?:  {
+    __typename: "ModelDiaryConnection",
+    items:  Array< {
+      __typename: "Diary",
+      id: string,
+      name: string,
+      image?: string | null,
+      description?: string | null,
+      author?: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type OnCreateDiartSubscriptionVariables = {
+  filter?: ModelSubscriptionDiartFilterInput | null,
+};
+
+export type OnCreateDiartSubscription = {
+  onCreateDiart?:  {
+    __typename: "Diart",
     id: string,
-    name: string,
+    name?: string | null,
+    img?: string | null,
     description?: string | null,
+    author?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
-export type OnDeleteTodoSubscriptionVariables = {
-  filter?: ModelSubscriptionTodoFilterInput | null,
+export type OnUpdateDiartSubscriptionVariables = {
+  filter?: ModelSubscriptionDiartFilterInput | null,
 };
 
-export type OnDeleteTodoSubscription = {
-  onDeleteTodo?:  {
-    __typename: "Todo",
+export type OnUpdateDiartSubscription = {
+  onUpdateDiart?:  {
+    __typename: "Diart",
+    id: string,
+    name?: string | null,
+    img?: string | null,
+    description?: string | null,
+    author?: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteDiartSubscriptionVariables = {
+  filter?: ModelSubscriptionDiartFilterInput | null,
+};
+
+export type OnDeleteDiartSubscription = {
+  onDeleteDiart?:  {
+    __typename: "Diart",
+    id: string,
+    name?: string | null,
+    img?: string | null,
+    description?: string | null,
+    author?: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnCreateDiarySubscriptionVariables = {
+  filter?: ModelSubscriptionDiaryFilterInput | null,
+};
+
+export type OnCreateDiarySubscription = {
+  onCreateDiary?:  {
+    __typename: "Diary",
     id: string,
     name: string,
+    image?: string | null,
     description?: string | null,
+    author?: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateDiarySubscriptionVariables = {
+  filter?: ModelSubscriptionDiaryFilterInput | null,
+};
+
+export type OnUpdateDiarySubscription = {
+  onUpdateDiary?:  {
+    __typename: "Diary",
+    id: string,
+    name: string,
+    image?: string | null,
+    description?: string | null,
+    author?: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteDiarySubscriptionVariables = {
+  filter?: ModelSubscriptionDiaryFilterInput | null,
+};
+
+export type OnDeleteDiarySubscription = {
+  onDeleteDiary?:  {
+    __typename: "Diary",
+    id: string,
+    name: string,
+    image?: string | null,
+    description?: string | null,
+    author?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,

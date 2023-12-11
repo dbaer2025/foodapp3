@@ -8,45 +8,51 @@ type GeneratedSubscription<InputType, OutputType> = string & {
   __generatedSubscriptionOutput: OutputType;
 };
 
-export const onCreateTodo = /* GraphQL */ `subscription OnCreateTodo($filter: ModelSubscriptionTodoFilterInput) {
-  onCreateTodo(filter: $filter) {
+export const onCreateDiary = /* GraphQL */ `subscription OnCreateDiary($filter: ModelSubscriptionDiaryFilterInput) {
+  onCreateDiary(filter: $filter) {
     id
     name
+    image
     description
+    author
     createdAt
     updatedAt
     __typename
   }
 }
 ` as GeneratedSubscription<
-  APITypes.OnCreateTodoSubscriptionVariables,
-  APITypes.OnCreateTodoSubscription
+  APITypes.OnCreateDiarySubscriptionVariables,
+  APITypes.OnCreateDiarySubscription
 >;
-export const onUpdateTodo = /* GraphQL */ `subscription OnUpdateTodo($filter: ModelSubscriptionTodoFilterInput) {
-  onUpdateTodo(filter: $filter) {
+export const onUpdateDiary = /* GraphQL */ `subscription OnUpdateDiary($filter: ModelSubscriptionDiaryFilterInput) {
+  onUpdateDiary(filter: $filter) {
     id
     name
+    image
     description
+    author
     createdAt
     updatedAt
     __typename
   }
 }
 ` as GeneratedSubscription<
-  APITypes.OnUpdateTodoSubscriptionVariables,
-  APITypes.OnUpdateTodoSubscription
+  APITypes.OnUpdateDiarySubscriptionVariables,
+  APITypes.OnUpdateDiarySubscription
 >;
-export const onDeleteTodo = /* GraphQL */ `subscription OnDeleteTodo($filter: ModelSubscriptionTodoFilterInput) {
-  onDeleteTodo(filter: $filter) {
+export const onDeleteDiary = /* GraphQL */ `subscription OnDeleteDiary($filter: ModelSubscriptionDiaryFilterInput) {
+  onDeleteDiary(filter: $filter) {
     id
     name
+    image
     description
+    author
     createdAt
     updatedAt
     __typename
   }
 }
 ` as GeneratedSubscription<
-  APITypes.OnDeleteTodoSubscriptionVariables,
-  APITypes.OnDeleteTodoSubscription
+  APITypes.OnDeleteDiarySubscriptionVariables,
+  APITypes.OnDeleteDiarySubscription
 >;

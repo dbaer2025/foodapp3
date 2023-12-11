@@ -17,6 +17,9 @@
       },
       "auth": {
         "foodapp3da10109f": {}
+      },
+      "storage": {
+        "imagestorage1": {}
       }
     }
   }
