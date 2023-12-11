@@ -6,9 +6,11 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps, useAuth, useNavigateAction } from "./utils";
+import { getOverrideProps, useAuth, useNavigateAction, processFile } from "./utils";
 import { useState } from "react";
 import { generateClient } from "aws-amplify/api";
+import { Field } from "@aws-amplify/ui-react/internal";
+import { StorageManager } from "@aws-amplify/ui-react-storage";
 import { createDiary } from "../graphql/mutations";
 import {
   Button,
@@ -185,24 +187,29 @@ export default function UINewReview(props) {
             }}
             {...getOverrideProps(overrides, "TextField4075415")}
           ></TextField>
-          <TextField
-            width="272px"
-            height="unset"
-            label="Image Link"
-            placeholder="http://www.example.com"
-            shrink="0"
-            size="default"
-            isDisabled={false}
-            labelHidden={false}
-            variation="default"
-            value={textFieldFourZeroSevenFiveFourThreeSixValue}
-            onChange={(event) => {
-              setTextFieldFourZeroSevenFiveFourThreeSixValue(
-                event.target.value
-              );
-            }}
-            {...getOverrideProps(overrides, "TextField4075436")}
-          ></TextField>
+
+<Field
+
+label={"Image"}
+isRequired={false}
+isReadOnly={false}
+>
+<StorageManager
+  onUploadSuccess={({ key }) => {
+    setImageName(
+      key
+    );
+  }}
+  processFile={processFile}
+  accessLevel={"public"}
+  acceptedFileTypes={[]}
+  isResumable={false}
+  showThumbnails={true}
+  maxFileCount={1}
+  {...getOverrideProps(overrides, "TextField4075436")}
+></StorageManager>
+</Field>
+
           <TextField
             width="272px"
             height="unset"
