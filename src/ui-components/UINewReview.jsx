@@ -6,8 +6,10 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps, useAuth, useNavigateAction } from "./utils";
+import { getOverrideProps, useAuth, useNavigateAction, processFile } from "./utils";
 import { useState } from "react";
+import { Field } from "@aws-amplify/ui-react/internal";
+import { StorageManager } from "@aws-amplify/ui-react-storage";
 import { generateClient } from "aws-amplify/api";
 import { createDiary } from "../graphql/mutations";
 import {
@@ -28,8 +30,8 @@ export default function UINewReview(props) {
     setTextFieldFourZeroSevenFiveFourOneFiveValue,
   ] = useState("");
   const [
-    textFieldFourZeroSevenFiveFourThreeSixValue,
-    setTextFieldFourZeroSevenFiveFourThreeSixValue,
+    imageName,
+    setImageName,
   ] = useState("");
   const [
     textFieldFourZeroSevenFiveFourFourThreeValue,
@@ -42,13 +44,17 @@ export default function UINewReview(props) {
       variables: {
         input: {
           name: textFieldFourZeroSevenFiveFourOneFiveValue,
-          image: textFieldFourZeroSevenFiveFourThreeSixValue,
+          image: imageName,
           description: textFieldFourZeroSevenFiveFourFourThreeValue,
           author: authAttributes["email"],
         },
       },
     });
   };
+
+
+
+
   const buttonOnMouseOut = useNavigateAction({ type: "url", url: "/" });
   return (
     <Flex
@@ -189,24 +195,27 @@ export default function UINewReview(props) {
             }}
             {...getOverrideProps(overrides, "TextField4075415")}
           ></TextField>
-          <TextField
-            width="272px"
-            height="unset"
-            label="Image Link"
-            placeholder="http://www.example.com"
-            shrink="0"
-            size="default"
-            isDisabled={false}
-            labelHidden={false}
-            variation="default"
-            value={textFieldFourZeroSevenFiveFourThreeSixValue}
-            onChange={(event) => {
-              setTextFieldFourZeroSevenFiveFourThreeSixValue(
-                event.target.value
-              );
-            }}
-            {...getOverrideProps(overrides, "TextField4075436")}
-          ></TextField>
+          <Field
+
+label={"Image"}
+isRequired={false}
+isReadOnly={false}
+>
+<StorageManager
+  onUploadSuccess={({ key }) => {
+    setImageName(
+      key
+    );
+  }}
+  processFile={processFile}
+  accessLevel={"public"}
+  acceptedFileTypes={[]}
+  isResumable={false}
+  showThumbnails={true}
+  maxFileCount={1}
+  {...getOverrideProps(overrides, "image")}
+></StorageManager>
+</Field>
           <TextField
             width="272px"
             height="unset"

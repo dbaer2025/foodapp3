@@ -7,13 +7,19 @@ import { Amplify } from 'aws-amplify';
 import config from './aws-exports';
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "@aws-amplify/ui-react";
-// import awsconfig from './aws-exports';
-
 import "@aws-amplify/ui-react/styles.css";
-import { studioTheme } from "./ui-components";
+// import awsconfig from './aws-exports';
+import {Auth, Storage} from 'aws-amplify'
+
+
+
+
+
+
 
 // Amplify.configure(awsconfig);
 Amplify.configure(config);
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -9,8 +9,10 @@ import * as React from "react";
 import { listDiaries } from "../graphql/queries";
 import ReviewCard from "./ReviewCard";
 import { getOverrideProps } from "./utils";
+import { Storage } from "aws-amplify";
 import { Collection, Pagination, Placeholder } from "@aws-amplify/ui-react";
-import { generateClient } from "aws-amplify/api";
+import { generateClient} from "aws-amplify/api";
+
 const nextToken = {};
 const apiCache = {};
 const client = generateClient();
@@ -61,6 +63,16 @@ export default function ReviewCardCollection(props) {
       ).data.listDiaries;
       newCache.push(...result.items);
       newNext = result.nextToken;
+      const diariesFromAPI = result.items
+      //  await Promise.all(
+      //         diariesFromAPI.map(async (diart) => {
+      //           if (diart.image) {
+      //              const url = await Storage.get(diart.image);
+      //   diart.image = url;
+      //           }
+      //           return diart;
+      //         })
+      //       );
     }
     const cacheSlice = isPaginated
       ? newCache.slice((page - 1) * pageSize, page * pageSize)

@@ -115,7 +115,7 @@ class App extends Component {
       <Routes>
         <Route exact path='/' element={<div><ReviewNavBar/><ReviewCardCollection/></div>}/>
         <Route exact path='/new' element={<UINewReview/>} />
-        <Route exact path='/edit' element={<UIEditReview/>} />
+        <Route exact path='/edit/:cid' element={<UIEditReview/>} />
         <Route exact path='/create' element={<DiaryCreateForm/>} />
       </Routes>
     </header></div>
