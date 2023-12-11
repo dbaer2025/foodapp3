@@ -7,10 +7,17 @@
 /* eslint-disable */
 import * as React from "react";
 import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
-import { fetchByPath, getOverrideProps, validateField } from "./utils";
+import { StorageManager } from "@aws-amplify/ui-react-storage";
+import {
+  fetchByPath,
+  getOverrideProps,
+  processFile,
+  validateField,
+} from "./utils";
 import { generateClient } from "aws-amplify/api";
 import { getDiary } from "../graphql/queries";
 import { updateDiary } from "../graphql/mutations";
+import { Field } from "@aws-amplify/ui-react/internal";
 const client = generateClient();
 export default function DiaryUpdateForm(props) {
   const {
@@ -26,16 +33,14 @@ export default function DiaryUpdateForm(props) {
   } = props;
   const initialValues = {
     name: "",
-    image: "",
+    image: undefined,
     description: "",
-    author: "",
   };
   const [name, setName] = React.useState(initialValues.name);
   const [image, setImage] = React.useState(initialValues.image);
   const [description, setDescription] = React.useState(
     initialValues.description
   );
-  const [author, setAuthor] = React.useState(initialValues.author);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = diaryRecord
@@ -44,7 +49,6 @@ export default function DiaryUpdateForm(props) {
     setName(cleanValues.name);
     setImage(cleanValues.image);
     setDescription(cleanValues.description);
-    setAuthor(cleanValues.author);
     setErrors({});
   };
   const [diaryRecord, setDiaryRecord] = React.useState(diaryModelProp);
@@ -67,7 +71,6 @@ export default function DiaryUpdateForm(props) {
     name: [{ type: "Required" }],
     image: [],
     description: [],
-    author: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -98,7 +101,6 @@ export default function DiaryUpdateForm(props) {
           name,
           image: image ?? null,
           description: description ?? null,
-          author: author ?? null,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -162,7 +164,6 @@ export default function DiaryUpdateForm(props) {
               name: value,
               image,
               description,
-              author,
             };
             const result = onChange(modelFields);
             value = result?.name ?? value;
@@ -177,33 +178,56 @@ export default function DiaryUpdateForm(props) {
         hasError={errors.name?.hasError}
         {...getOverrideProps(overrides, "name")}
       ></TextField>
-      <TextField
-        label="Image"
-        isRequired={false}
-        isReadOnly={false}
-        value={image}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              name,
-              image: value,
-              description,
-              author,
-            };
-            const result = onChange(modelFields);
-            value = result?.image ?? value;
-          }
-          if (errors.image?.hasError) {
-            runValidationTasks("image", value);
-          }
-          setImage(value);
-        }}
-        onBlur={() => runValidationTasks("image", image)}
+      <Field
         errorMessage={errors.image?.errorMessage}
         hasError={errors.image?.hasError}
-        {...getOverrideProps(overrides, "image")}
-      ></TextField>
+        label={"Image"}
+        isRequired={false}
+        isReadOnly={false}
+      >
+        {diaryRecord && (
+          <StorageManager
+            defaultFiles={[{ key: diaryRecord.image }]}
+            onUploadSuccess={({ key }) => {
+              setImage((prev) => {
+                let value = key;
+                if (onChange) {
+                  const modelFields = {
+                    name,
+                    image: value,
+                    description,
+                  };
+                  const result = onChange(modelFields);
+                  value = result?.image ?? value;
+                }
+                return value;
+              });
+            }}
+            onFileRemove={({ key }) => {
+              setImage((prev) => {
+                let value = initialValues?.image;
+                if (onChange) {
+                  const modelFields = {
+                    name,
+                    image: value,
+                    description,
+                  };
+                  const result = onChange(modelFields);
+                  value = result?.image ?? value;
+                }
+                return value;
+              });
+            }}
+            processFile={processFile}
+            accessLevel={"private"}
+            acceptedFileTypes={[]}
+            isResumable={false}
+            showThumbnails={true}
+            maxFileCount={1}
+            {...getOverrideProps(overrides, "image")}
+          ></StorageManager>
+        )}
+      </Field>
       <TextField
         label="Description"
         isRequired={false}
@@ -216,7 +240,6 @@ export default function DiaryUpdateForm(props) {
               name,
               image,
               description: value,
-              author,
             };
             const result = onChange(modelFields);
             value = result?.description ?? value;
@@ -230,33 +253,6 @@ export default function DiaryUpdateForm(props) {
         errorMessage={errors.description?.errorMessage}
         hasError={errors.description?.hasError}
         {...getOverrideProps(overrides, "description")}
-      ></TextField>
-      <TextField
-        label="Author"
-        isRequired={false}
-        isReadOnly={false}
-        value={author}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              name,
-              image,
-              description,
-              author: value,
-            };
-            const result = onChange(modelFields);
-            value = result?.author ?? value;
-          }
-          if (errors.author?.hasError) {
-            runValidationTasks("author", value);
-          }
-          setAuthor(value);
-        }}
-        onBlur={() => runValidationTasks("author", author)}
-        errorMessage={errors.author?.errorMessage}
-        hasError={errors.author?.hasError}
-        {...getOverrideProps(overrides, "author")}
       ></TextField>
       <Flex
         justifyContent="space-between"

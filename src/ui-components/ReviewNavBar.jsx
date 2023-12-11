@@ -10,6 +10,7 @@ import { getOverrideProps, useNavigateAction } from "./utils";
 import { Button, Flex, Text } from "@aws-amplify/ui-react";
 export default function ReviewNavBar(props) {
   const { overrides, ...rest } = props;
+  const homePageOnClick = useNavigateAction({ type: "url", url: "/" });
   const buttonOnClick = useNavigateAction({ type: "url", url: "/new" });
   return (
     <Flex
@@ -93,6 +94,9 @@ export default function ReviewNavBar(props) {
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
           children="Home Page"
+          onClick={() => {
+            homePageOnClick();
+          }}
           {...getOverrideProps(overrides, "Home Page")}
         ></Text>
       </Flex>

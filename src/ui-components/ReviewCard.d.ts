@@ -22,8 +22,10 @@ export declare type ReviewCardOverridesProps = {
     ReviewCard?: PrimitiveOverrideProps<FlexProps>;
     image?: PrimitiveOverrideProps<ImageProps>;
     "Frame 324"?: PrimitiveOverrideProps<ViewProps>;
-    MyIcon?: MyIconProps;
-    Button?: PrimitiveOverrideProps<ButtonProps>;
+    MyIcon4089123?: MyIconProps;
+    MyIcon4117139?: MyIconProps;
+    Button411762?: PrimitiveOverrideProps<ButtonProps>;
+    Button409265?: PrimitiveOverrideProps<ButtonProps>;
     "Card Area"?: PrimitiveOverrideProps<FlexProps>;
     "Text Group"?: PrimitiveOverrideProps<FlexProps>;
     "Name of Restaurant"?: PrimitiveOverrideProps<TextProps>;

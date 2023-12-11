@@ -7,11 +7,31 @@
 /* eslint-disable */
 import * as React from "react";
 import { getOverrideProps, useNavigateAction } from "./utils";
+import { generateClient } from "aws-amplify/api";
+import { deleteDiary } from "../graphql/mutations";
 import { Button, Flex, Image, Text, View } from "@aws-amplify/ui-react";
 import MyIcon from "./MyIcon";
+const client = generateClient();
 export default function ReviewCard(props) {
   const { diart, overrides, ...rest } = props;
-  const buttonOnClick = useNavigateAction({ type: "url", url: "/edit" });
+  const buttonFourOneOneSevenSixTwoOnClick = useNavigateAction({
+    type: "url",
+    url: "/edit",
+  });
+  const buttonFourZeroNineTwoSixFiveOnClick = async () => {
+    await client.graphql({
+      query: deleteDiary.replaceAll("__typename", ""),
+      variables: {
+        input: {
+          id: diart?.id,
+        },
+      },
+    });
+  };
+  const buttonFourZeroNineTwoSixFiveOnMouseOut = useNavigateAction({
+    type: "url",
+    url: "/",
+  });
   return (
     <Flex
       gap="0"
@@ -68,7 +88,22 @@ export default function ReviewCard(props) {
           left="9px"
           padding="0px 0px 0px 0px"
           type="edit"
-          {...getOverrideProps(overrides, "MyIcon")}
+          {...getOverrideProps(overrides, "MyIcon4089123")}
+        ></MyIcon>
+        <MyIcon
+          width="24px"
+          height="24px"
+          display="block"
+          gap="unset"
+          alignItems="unset"
+          justifyContent="unset"
+          overflow="hidden"
+          position="absolute"
+          top="5px"
+          left="287px"
+          padding="0px 0px 0px 0px"
+          type="delete"
+          {...getOverrideProps(overrides, "MyIcon4117139")}
         ></MyIcon>
         <Button
           width="42px"
@@ -81,9 +116,27 @@ export default function ReviewCard(props) {
           isDisabled={false}
           variation="default"
           onClick={() => {
-            buttonOnClick();
+            buttonFourOneOneSevenSixTwoOnClick();
           }}
-          {...getOverrideProps(overrides, "Button")}
+          {...getOverrideProps(overrides, "Button411762")}
+        ></Button>
+        <Button
+          width="42px"
+          height="34px"
+          position="absolute"
+          borderRadius="4px"
+          top="0px"
+          left="278px"
+          size="default"
+          isDisabled={false}
+          variation="default"
+          onClick={() => {
+            buttonFourZeroNineTwoSixFiveOnClick();
+          }}
+          onMouseOut={() => {
+            buttonFourZeroNineTwoSixFiveOnMouseOut();
+          }}
+          {...getOverrideProps(overrides, "Button409265")}
         ></Button>
       </View>
       <Flex

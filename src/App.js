@@ -106,7 +106,7 @@
 import React, { Component } from 'react'
 import './App.css';
 import { withAuthenticator } from '@aws-amplify/ui-react';
-import {ReviewNavBar, ReviewCardCollection, UINewReview, UIEditReview, DiaryCreateForm} from "./ui-components";
+import {ReviewNavBar, ReviewCardCollection, UINewReview, UIEditReview, DiaryCreateForm, DiaryUpdateForm} from "./ui-components";
 import { Routes, Route } from 'react-router-dom';
 class App extends Component {
   render() {

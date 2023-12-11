@@ -6,6 +6,7 @@
 
 import * as React from "react";
 import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { StorageManagerProps } from "@aws-amplify/ui-react-storage";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -25,21 +26,18 @@ export declare type DiaryUpdateFormInputValues = {
     name?: string;
     image?: string;
     description?: string;
-    author?: string;
 };
 export declare type DiaryUpdateFormValidationValues = {
     name?: ValidationFunction<string>;
     image?: ValidationFunction<string>;
     description?: ValidationFunction<string>;
-    author?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type DiaryUpdateFormOverridesProps = {
     DiaryUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
     name?: PrimitiveOverrideProps<TextFieldProps>;
-    image?: PrimitiveOverrideProps<TextFieldProps>;
+    image?: PrimitiveOverrideProps<StorageManagerProps>;
     description?: PrimitiveOverrideProps<TextFieldProps>;
-    author?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type DiaryUpdateFormProps = React.PropsWithChildren<{
     overrides?: DiaryUpdateFormOverridesProps | undefined | null;

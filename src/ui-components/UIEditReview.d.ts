@@ -31,11 +31,11 @@ export declare type UIEditReviewOverridesProps = {
     TextField4075478?: PrimitiveOverrideProps<TextFieldProps>;
     Divider4075324?: PrimitiveOverrideProps<DividerProps>;
     "Frame 322"?: PrimitiveOverrideProps<FlexProps>;
-    Button4075574?: PrimitiveOverrideProps<ButtonProps>;
-    Button4104138?: PrimitiveOverrideProps<ButtonProps>;
+    Button?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
 export declare type UIEditReviewProps = React.PropsWithChildren<Partial<FlexProps> & {
     diart?: any;
+    d?: any;
 } & {
     overrides?: UIEditReviewOverridesProps | undefined | null;
 }>;

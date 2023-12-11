@@ -9,7 +9,7 @@ import * as React from "react";
 import { getOverrideProps, useAuth, useNavigateAction } from "./utils";
 import { useState } from "react";
 import { generateClient } from "aws-amplify/api";
-import { deleteDiary, updateDiary } from "../graphql/mutations";
+import { updateDiary } from "../graphql/mutations";
 import {
   Button,
   Divider,
@@ -21,7 +21,7 @@ import {
 } from "@aws-amplify/ui-react";
 const client = generateClient();
 export default function UIEditReview(props) {
-  const { diart, overrides, ...rest } = props;
+  const { diart, d, overrides, ...rest } = props;
   const authAttributes = useAuth().user?.attributes ?? {};
   const [
     textFieldFourZeroSevenFiveFourFiveZeroValue,
@@ -36,7 +36,7 @@ export default function UIEditReview(props) {
     setTextFieldFourZeroSevenFiveFourSevenEightValue,
   ] = useState("");
   const vectorOnClick = useNavigateAction({ type: "url", url: "/" });
-  const buttonFourZeroSevenFiveFiveSevenFourOnClick = async () => {
+  const buttonOnClick = async () => {
     await client.graphql({
       query: updateDiary.replaceAll("__typename", ""),
       variables: {
@@ -45,29 +45,12 @@ export default function UIEditReview(props) {
           image: textFieldFourZeroSevenFiveFourSevenOneValue,
           description: textFieldFourZeroSevenFiveFourSevenEightValue,
           author: authAttributes["email"],
-          id: diart?.id,
+          id: d?.id,
         },
       },
     });
   };
-  const buttonFourZeroSevenFiveFiveSevenFourOnMouseOut = useNavigateAction({
-    type: "url",
-    url: "/",
-  });
-  const buttonFourOneZeroFourOneThreeEightOnClick = async () => {
-    await client.graphql({
-      query: deleteDiary.replaceAll("__typename", ""),
-      variables: {
-        input: {
-          id: diart?.id,
-        },
-      },
-    });
-  };
-  const buttonFourOneZeroFourOneThreeEightOnMouseOut = useNavigateAction({
-    type: "url",
-    url: "/",
-  });
+  const buttonOnMouseOut = useNavigateAction({ type: "url", url: "/" });
   return (
     <Flex
       gap="16px"
@@ -269,7 +252,7 @@ export default function UIEditReview(props) {
           {...getOverrideProps(overrides, "Frame 322")}
         >
           <Button
-            width="90px"
+            width="140px"
             height="unset"
             borderRadius="4px"
             shrink="0"
@@ -279,30 +262,12 @@ export default function UIEditReview(props) {
             variation="default"
             children="Save"
             onClick={() => {
-              buttonFourZeroSevenFiveFiveSevenFourOnClick();
+              buttonOnClick();
             }}
             onMouseOut={() => {
-              buttonFourZeroSevenFiveFiveSevenFourOnMouseOut();
+              buttonOnMouseOut();
             }}
-            {...getOverrideProps(overrides, "Button4075574")}
-          ></Button>
-          <Button
-            width="90px"
-            height="unset"
-            borderRadius="4px"
-            shrink="0"
-            backgroundColor="rgba(191,64,64,1)"
-            size="default"
-            isDisabled={false}
-            variation="default"
-            children="Delete"
-            onClick={() => {
-              buttonFourOneZeroFourOneThreeEightOnClick();
-            }}
-            onMouseOut={() => {
-              buttonFourOneZeroFourOneThreeEightOnMouseOut();
-            }}
-            {...getOverrideProps(overrides, "Button4104138")}
+            {...getOverrideProps(overrides, "Button")}
           ></Button>
         </Flex>
       </Flex>
